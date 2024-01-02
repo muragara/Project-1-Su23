@@ -26,7 +26,7 @@ class SearchProblem:
 
     You do not need to change anything in this class, ever.
     """
-
+    
     def getStartState(self):
         """
         Returns the start state for the search problem.
@@ -51,6 +51,7 @@ class SearchProblem:
         the incremental cost of expanding to that successor.
         """
         util.raiseNotDefined()
+    
 
     def getCostOfActions(self, actions):
         """
@@ -73,26 +74,45 @@ def tinyMazeSearch(problem):
     return  [s, s, w, s, w, w, s, w]
 
 def depthFirstSearch(problem: SearchProblem):
-    """
-    Search the deepest nodes in the search tree first.
-
-    Your search algorithm needs to return a list of actions that reaches the
-    goal. Make sure to implement a graph search algorithm.
-
-    To get started, you might want to try some of these simple commands to
-    understand the search problem that is being passed in:
-
-    print("Start:", problem.getStartState())
-    print("Is the start a goal?", problem.isGoalState(problem.getStartState()))
-    print("Start's successors:", problem.getSuccessors(problem.getStartState()))
-    """
-    "*** YOUR CODE HERE ***"
-    util.raiseNotDefined()
+    perimeter = util.Stack()
+    visited = []
+    
+    perimeter.push((problem.getStartState(), [], 0)) # [] = list of entire path to goal | 0 = cost of entire path
+    while not perimeter.isEmpty():
+        vFrom = perimeter.pop()
+        if problem.isGoalState(vFrom[0]):
+                return vFrom[1]
+        if vFrom[0] not in visited:
+            for edge in problem.getSuccessors(vFrom[0]):
+                perimeter.push((edge[0], vFrom[1] + [edge[1]], edge[2] + vFrom[2]))
+            visited.append(vFrom[0])
 
 def breadthFirstSearch(problem: SearchProblem):
-    """Search the shallowest nodes in the search tree first."""
-    "*** YOUR CODE HERE ***"
-    util.raiseNotDefined()
+    node = { "state": problem.getStartState(), "cost": 0 }
+    
+    if problem.isGoalState(node["state"]):
+        return []
+    
+    perimeter = util.Queue()
+    perimeter.push(node)
+    visited = set()
+    
+    while True:
+        node = perimeter.pop()
+        visited.add(node["state"])
+        successors = problem.getSuccessors(node["state"])
+        for successor in successors:
+            child = { "state": successor[0], "action": successor[1], "cost": successor[2], "parent": node }
+            if child["state"] not in visited:
+                if problem.isGoalState(child["state"]):
+                    actions = []
+                    node = child
+                    while "parent" in node:
+                        actions.append(node["action"])
+                        node = node["parent"] 
+                    actions.reverse() # because we need to backtrack from the ending to the beginning, but we want correct order
+                    return actions
+                perimeter.push(child)
 
 def uniformCostSearch(problem: SearchProblem):
     """Search the node of least total cost first."""
