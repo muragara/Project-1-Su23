@@ -88,7 +88,7 @@ def depthFirstSearch(problem: SearchProblem):
                 perimeter.push((edge[0], vFrom[1] + [edge[1]], edge[2] + vFrom[2]))
             visited.append(vFrom[0])
 
-def breadthFirstSearch(problem: SearchProblem):
+def _old_breadthFirstSearch(problem: SearchProblem):
     node = { "state": problem.getStartState(), "cost": 0 }
     
     if problem.isGoalState(node["state"]):
@@ -114,6 +114,25 @@ def breadthFirstSearch(problem: SearchProblem):
                     actions.reverse() # because we need to backtrack from the ending to the beginning, but we want correct order
                     return actions
                 perimeter.push(child)
+
+def breadthFirstSearch(problem: SearchProblem):
+    perimeter = util.Queue()
+    visited = set()
+
+    perimeter.push((problem.getStartState(), [])) 
+    visited.add(problem.getStartState())
+
+    while not perimeter.isEmpty():
+        vFrom = perimeter.pop()
+        if (problem.isGoalState(vFrom[0])):
+            print("found goal")
+            return vFrom[1]
+        for edge in problem.getSuccessors(vFrom[0]):
+            to = edge[0]
+            if to not in visited:
+                perimeter.push((to, vFrom[1] + [edge[1]]))
+                visited.add(to)
+    return []
 
 def dijkstraSearch(problem: SearchProblem):
     # save the path to the goal in edgeTo
