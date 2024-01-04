@@ -75,5 +75,32 @@
             "justMyCode": true,
             "args" : ["-l", "giantMaze", "-z", ".2", "-p" , "SearchAgent"]
         },
+        {
+            "name": "Pacman djk best path",
+            "type": "python",
+            "request": "launch",
+            "program": "pacman.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args" : ["-l", "djkTestMaze", "-z", ".5", "-p" , "SearchAgent", "-a", "fn=djk,prob=CheapestPathToGoalProblem"]
+        }, 
+        {
+            "name": "Pacman dfs best path",
+            "type": "python",
+            "request": "launch",
+            "program": "pacman.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args" : ["-l", "djkTestMaze", "-z", ".5", "-p" , "SearchAgent", "-a", "fn=dfs,prob=CheapestPathToGoalProblem"]
+        }, 
+        {
+            "name": "Pacman bfs best path",
+            "type": "python",
+            "request": "launch",
+            "program": "pacman.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args" : ["-l", "djkTestMaze", "-z", ".5", "-p" , "SearchAgent", "-a", "fn=bfs,prob=CheapestPathToGoalProblem"]
+        }, 
     ]
 }
