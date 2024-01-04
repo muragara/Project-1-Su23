@@ -18,6 +18,7 @@ Pacman agents (in searchAgents.py).
 """
 
 import util
+import sys
 
 class SearchProblem:
     """
@@ -114,6 +115,46 @@ def breadthFirstSearch(problem: SearchProblem):
                     return actions
                 perimeter.push(child)
 
+def dijkstraSearch(problem: SearchProblem):
+    # save the path to the goal in edgeTo
+    edgeTo = {}
+    distTo = {}
+
+    perimeter = util.PriorityQueue()
+    perimeter.push(problem.getStartState(), 0)
+    distTo[problem.getStartState()] = 0
+
+    while not perimeter.isEmpty():
+        u = perimeter.pop()
+
+        for v in problem.getSuccessors(u):
+            if(v[0] not in distTo):
+                distTo[v[0]] = sys.maxsize # infinity
+            oldDist = distTo[v[0]]
+            newDist = distTo[u] + v[2]
+            if newDist < oldDist:
+                distTo[v[0]] = newDist
+                edgeTo[v[0]] = (u, v[1])
+
+                if problem.isGoalState(v[0]):
+                    print(f"found goal. cost: {newDist}")
+                    path = []
+                    v = edgeTo[v[0]] # ends in wall without this
+                    while v[0] != problem.getStartState():
+                        path.append(v[1])
+                        v = edgeTo[v[0]]
+                    path.append(v[1])
+                    path.reverse()
+                    return path
+                
+                if perimeter.heap.__contains__(v[0]):
+                    perimeter.update(v[0], newDist)
+                else:
+                    perimeter.push(v[0], newDist)
+        
+    return []
+                
+
 def uniformCostSearch(problem: SearchProblem):
     """Search the node of least total cost first."""
     "*** YOUR CODE HERE ***"
@@ -137,3 +178,4 @@ bfs = breadthFirstSearch
 dfs = depthFirstSearch
 astar = aStarSearch
 ucs = uniformCostSearch
+djk = dijkstraSearch

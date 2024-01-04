@@ -20,7 +20,7 @@
             "program": "pacman.py",
             "console": "integratedTerminal",
             "justMyCode": true,
-            "args" : ["-l", "bigMaze", "-z", ".5", "-p" , "SearchAgent"]
+            "args" : ["-l", "mediumMaze", "-z", ".5", "-p" , "SearchAgent"]
         },
         {
             "name": "Pacman bfs",
@@ -29,7 +29,7 @@
             "program": "pacman.py",
             "console": "integratedTerminal",
             "justMyCode": true,
-            "args" : ["-l", "bigMaze", "-z", ".5", "-p" , "SearchAgent", "-a", "fn=bfs"]
+            "args" : ["-l", "mediumMaze", "-z", ".5", "-p" , "SearchAgent", "-a", "fn=bfs"]
         },    
         {
             "name": "Pacman eightpuzzle",
@@ -38,6 +38,15 @@
             "program": "eightpuzzle.py",
             "console": "integratedTerminal",
             "justMyCode": true
-        },     
+        },    
+        {
+            "name": "Pacman djk",
+            "type": "python",
+            "request": "launch",
+            "program": "pacman.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args" : ["-l", "mediumMaze", "-z", ".5", "-p" , "SearchAgent", "-a", "fn=djk"]
+        },   
     ]
 }
