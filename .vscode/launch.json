@@ -102,5 +102,14 @@
             "justMyCode": true,
             "args" : ["-l", "djkTestMaze", "-z", ".5", "-p" , "SearchAgent", "-a", "fn=bfs,prob=CheapestPathToGoalProblem"]
         }, 
+        {
+            "name": "autograder",
+            "type": "python",
+            "request": "launch",
+            "program": "autograder.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args" : ["-q", "q2"]
+        }, 
     ]
 }
