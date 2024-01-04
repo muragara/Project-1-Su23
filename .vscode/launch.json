@@ -40,7 +40,7 @@
             "justMyCode": true
         },    
         {
-            "name": "Pacman djk",
+            "name": "Pacman djk medium",
             "type": "python",
             "request": "launch",
             "program": "pacman.py",
@@ -48,5 +48,32 @@
             "justMyCode": true,
             "args" : ["-l", "mediumMaze", "-z", ".5", "-p" , "SearchAgent", "-a", "fn=djk"]
         },   
+        {
+            "name": "Pacman djk giant",
+            "type": "python",
+            "request": "launch",
+            "program": "pacman.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args" : ["-l", "giantMaze", "-z", ".2", "-p" , "SearchAgent", "-a", "fn=djk"]
+        },  
+        {
+            "name": "Pacman bfs giant",
+            "type": "python",
+            "request": "launch",
+            "program": "pacman.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args" : ["-l", "giantMaze", "-z", ".2", "-p" , "SearchAgent", "-a", "fn=bfs"]
+        },  
+        {
+            "name": "Pacman dfs giant",
+            "type": "python",
+            "request": "launch",
+            "program": "pacman.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args" : ["-l", "giantMaze", "-z", ".2", "-p" , "SearchAgent"]
+        },
     ]
 }
