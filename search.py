@@ -125,7 +125,6 @@ def breadthFirstSearch(problem: SearchProblem):
     while not perimeter.isEmpty():
         vFrom = perimeter.pop()
         if (problem.isGoalState(vFrom[0])):
-            print("found goal")
             return vFrom[1]
         for edge in problem.getSuccessors(vFrom[0]):
             to = edge[0]

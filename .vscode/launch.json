@@ -55,7 +55,7 @@
             "program": "pacman.py",
             "console": "integratedTerminal",
             "justMyCode": true,
-            "args" : ["-l", "giantMaze", "-z", ".2", "-p" , "SearchAgent", "-a", "fn=djk"]
+            "args" : ["-l", "giantMaze", "-z", ".2", "-p" , "SearchAgent", "-a", "fn=djk", "--frameTime", "-0.1"]
         },  
         {
             "name": "Pacman bfs giant",
